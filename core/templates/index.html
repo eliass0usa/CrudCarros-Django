@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualização de carros</title>
+</head>
+
+<body>
+  <div class="form">
+    <form action="{% url 'salvar' %}" method="post">
+      {% csrf_token %}
+      Nome do Veículo:<input type="text" name="nome">
+      Marca do Veículo:<input type="text" name="marca">
+      Placa do Veículo:<input type="text" name="placa">
+      <button type="submit">Cadastrar</button>
+    </form>
+  </div>
+
+  <div class="Tabela">
+    <h1>Tabela de Veículos</h1>
+    <table style="border-collapse: collapse; width: 100%; text-align: left; margin: 20px 0;">
+      <thead>
+        <tr style="background-color: #f2f2f2;">
+          <th style="border: 1px solid #ddd; padding: 8px;">ID</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">Nome</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">Marca</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">Placa</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">Configurações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for carro in carros %}
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;">{{ carro.id }}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">{{ carro.nome }}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">{{ carro.marca }}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">{{ carro.placa }}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><a href="">Editar</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+
+</body>
+
+</html>
