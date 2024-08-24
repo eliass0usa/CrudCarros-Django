@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editor</title>
+</head>
+
+<body>
+  <h1>Editar Cadastro</h1>
+  <form action="{% url 'update' carro.id %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="nome" value="{{carro.nome}}">
+    <input type="text" name="marca" value="{{carro.marca}}">
+    <input type="text" name="placa" value="{{carro.placa}}">
+    <button type="submit">Atualizar</button>
+  </form>
+
+</body>
+
+</html>
+
+<div class="Tabela">
+  <h1>Tabela de Veículos</h1>
+  <table style="border-collapse: collapse; width: 100%; text-align: left; margin: 20px 0;">
+    <thead>
+      <tr style="background-color: #f2f2f2;">
+        <th style="border: 1px solid #ddd; padding: 8px;">ID</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Nome</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Marca</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Placa</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">{{ carro.id }}</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">{{ carro.nome }}</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">{{ carro.marca }}</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">{{ carro.placa }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
