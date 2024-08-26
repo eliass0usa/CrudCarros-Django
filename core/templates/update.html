@@ -4,24 +4,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Editor</title>
+  <title>Editor de Registro</title>
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 
 <body>
-  <h1>Editar Cadastro</h1>
   <form action="{% url 'update' carro.id %}" method="post">
+    <h3>Editar Cadastro</h3>
     {% csrf_token %}
-    <input type="text" name="nome" value="{{carro.nome}}">
-    <input type="text" name="marca" value="{{carro.marca}}">
-    <input type="text" name="placa" value="{{carro.placa}}">
+    <label for="nome"><strong>Nome</strong></label>
+    <input type="text" name="nome" value="{{carro.nome}}" required>
+    <label for="marca"><strong>Marca</strong></label>
+    <input type="text" name="marca" value="{{carro.marca}}" required>
+    <label for="placa"><strong>Placa</strong></label>
+    <input type="text" name="placa" value="{{carro.placa}}" required>
     <button type="submit">Atualizar</button>
     <a href="/core/templates/index.html"></a><button type="menu">Voltar</button>
   </form>
 
   <div class="Tabela">
-    <h1>Tabela de Veículos</h1>
+    <h3>Tabela de Veículos</h3>
     <table>
       <thead>
         <tr>
