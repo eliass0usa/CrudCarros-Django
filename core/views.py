@@ -32,4 +32,4 @@ def update(request, id):
 def delete(request, id):
   carro = Carro.objects.get(id=id)
   carro.delete()
-  return redirect(home) 
+  return redirect(home)
