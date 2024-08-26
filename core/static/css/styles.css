@@ -5,6 +5,31 @@ body {
   background-color: #f8f9fa;
 }
 
+nav {
+  padding: 10px;
+}
+
+nav ul {
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+}
+
+nav li {
+  margin: 10px;
+}
+
+nav a {
+  color: rgb(0, 0, 0);
+  text-align: none;
+  padding: 5px 10px;
+}
+
+nav a:hover {
+  transition: 0.3s all;
+  border-radius: 1px;
+}
+
 h3 {
   text-align: center;
   align-items: center;
