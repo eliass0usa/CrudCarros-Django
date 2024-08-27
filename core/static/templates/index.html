@@ -28,6 +28,10 @@
       <input type="text" name="marca" required>
       <label for="placa"><strong>Placa</strong></label>
       <input type="text" name="placa" required>
+      <label for="placa"><strong>Cor</strong></label>
+      <input type="text" name="cor" required>
+      <label for="placa"><strong>Ano</strong></label>
+      <input type="text" name="ano" required>
       <button type="submit">Cadastrar</button>
     </form>
   </div>
@@ -41,6 +45,8 @@
           <th>Nome</th>
           <th>Marca</th>
           <th>Placa</th>
+          <th>Cor</th>
+          <th>Ano</th>
           <th>Configurações</th>
         </tr>
       </thead>
@@ -51,6 +57,8 @@
           <td>{{ carro.nome }}</td>
           <td>{{ carro.marca }}</td>
           <td>{{ carro.placa }}</td>
+          <td>{{ carro.cor }}</td>
+          <td>{{ carro.ano }}</td>
           <td><a href="{% url 'editar' carro.id %}"><button class="botoes" id="editar">Editar</button></a>
             <a href="{% url 'delete' carro.id %}"><button class="botoes" id="deletar">Deletar</button></a>
           </td>
