@@ -18,4 +18,4 @@ class Carro(models.Model):
   cliente = models.ForeignKey(to='core.Cliente', on_delete=models.CASCADE, null=True)
   
   def __str__(self):
-    return self.carro
+    return '{} | {} | {}'.format(self.nome, self.marca, self.placa)

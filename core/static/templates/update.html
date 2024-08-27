@@ -1,53 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% load static %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Editor de Registro</title>
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
+{% block title %}Editor de Registro{% endblock %}
 
-<body>
-  <form action="{% url 'update' carro.id %}" method="post">
-    <h3>Editar Cadastro</h3>
-    {% csrf_token %}
-    <label for="nome"><strong>Nome</strong></label>
-    <input type="text" name="nome" value="{{carro.nome}}" required>
-    <label for="marca"><strong>Marca</strong></label>
-    <input type="text" name="marca" value="{{carro.marca}}" required>
-    <label for="placa"><strong>Placa</strong></label>
-    <input type="text" name="placa" value="{{carro.placa}}" required>
-    <label for="cor"><strong>Cor</strong></label>
-    <input type="text" name="cor" required value="{{carro.cor}}">
-    <label for="ano"><strong>Ano</strong></label>
-    <input type="text" name="ano" required value="{{carro.ano}}">
-    <button type="submit">Atualizar</button>
-    <a href="/core/templates/index.html"></a><button type="menu">Voltar</button>
-  </form>
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock %}
 
-  <div class="Tabela">
-    <h3>Tabela de Veículos</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nome</th>
-          <th>Marca</th>
-          <th>Placa</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{{ carro.id }}</td>
-          <td>{{ carro.nome }}</td>
-          <td>{{ carro.marca }}</td>
-          <td>{{ carro.placa }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</body>
+{% block body %}
+<form action="{% url 'update' carro.id %}" method="post">
+  <h3>Editar Cadastro</h3>
+  {% csrf_token %}
+  <label for="nome"><strong>Nome</strong></label>
+  <input type="text" name="nome" value="{{ carro.nome }}" required>
+  <label for="marca"><strong>Marca</strong></label>
+  <input type="text" name="marca" value="{{ carro.marca }}" required>
+  <label for="placa"><strong>Placa</strong></label>
+  <input type="text" name="placa" value="{{ carro.placa }}" required>
+  <label for="cor"><strong>Cor</strong></label>
+  <input type="text" name="cor" value="{{ carro.cor }}" required>
+  <label for="ano"><strong>Ano</strong></label>
+  <input type="text" name="ano" value="{{ carro.ano }}" required>
+  <button type="submit">Atualizar</button>
+  <a href="{% url 'home' %}"><button type="button">Voltar</button></a>
+</form>
 
-</html>
+<div class="Tabela">
+  <h3>Tabela de Veículos</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Marca</th>
+        <th>Placa</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ carro.id }}</td>
+        <td>{{ carro.nome }}</td>
+        <td>{{ carro.marca }}</td>
+        <td>{{ carro.placa }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock %}
