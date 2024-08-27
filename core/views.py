@@ -9,7 +9,9 @@ def salvar(request):
   cnome = request.POST.get("nome")
   cmarca = request.POST.get("marca")
   cplaca = request.POST.get("placa")
-  Carro.objects.create(nome=cnome, marca=cmarca, placa=cplaca)
+  ccor = request.POST.get("cor")
+  cano = request.POST.get("ano")
+  Carro.objects.create(nome=cnome, marca=cmarca, placa=cplaca, cor=ccor, ano=cano)
   carros = Carro.objects.all()
   return render(request, "index.html", {'carros':carros})
 
@@ -21,11 +23,15 @@ def update(request, id):
   cnome = request.POST.get("nome")
   cmarca = request.POST.get("marca")
   cplaca = request.POST.get("placa")
+  ccor = request.POST.get("cor")
+  cano = request.POST.get("ano")
   carro = Carro.objects.get(id=id)
   
   carro.nome = cnome
   carro.marca = cmarca
   carro.placa = cplaca
+  carro.cor = ccor
+  carro.ano = cano
   carro.save()
   return redirect(home)
 
