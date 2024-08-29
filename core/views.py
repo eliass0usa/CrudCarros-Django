@@ -1,9 +1,19 @@
-from django.shortcuts import render, redirect
-from .models import Carro
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Carro, Cliente
 
+# HOME
 def home(request):
+  return render (request, "index.html")
+
+# MODEL CLIENTE #
+def homeCliente(request):
+  clientes = Cliente.objects.all()
+  return render (request, "clientes.html", {'clientes': clientes})
+
+# MODEL CARROS #
+def homeCarros(request):
   carros = Carro.objects.all()
-  return render (request, "index.html", {'carros': carros})
+  return render (request, "carros.html", {'carros': carros})
 
 def salvar(request):
   cnome = request.POST.get("nome")
@@ -13,29 +23,36 @@ def salvar(request):
   cano = request.POST.get("ano")
   Carro.objects.create(nome=cnome, marca=cmarca, placa=cplaca, cor=ccor, ano=cano)
   carros = Carro.objects.all()
-  return render(request, "index.html", {'carros':carros})
+  return render(request, "carros.html", {'carros':carros})
 
 def editar(request, id):
-  carro = Carro.objects.get(id=id)
+  carro = get_object_or_404(Carro, id=id)
   return render(request, "update.html", {"carro":carro})
 
 def update(request, id):
-  cnome = request.POST.get("nome")
-  cmarca = request.POST.get("marca")
-  cplaca = request.POST.get("placa")
-  ccor = request.POST.get("cor")
-  cano = request.POST.get("ano")
-  carro = Carro.objects.get(id=id)
+  carro = get_object_or_404(Carro, id=id)
   
-  carro.nome = cnome
-  carro.marca = cmarca
-  carro.placa = cplaca
-  carro.cor = ccor
-  carro.ano = cano
-  carro.save()
-  return redirect(home)
+  if request.method == 'POST':
+    cnome = request.POST.get("nome")
+    cmarca = request.POST.get("marca")
+    cplaca = request.POST.get("placa")
+    ccor = request.POST.get("cor") 
+    cano = request.POST.get("ano")
+    if cnome and cmarca and cplaca and ccor and cano:
+      carro.nome = cnome
+      carro.marca = cmarca
+      carro.placa = cplaca
+      carro.cor = ccor
+      carro.ano = cano
+      carro.save()
+      return redirect('homeCarros')
+    else:
+      return render(request, "update.html", {"carro": carro, "error": "Todos os campos são obrigatórios"})
+     
+  return render(request, "update.html", {"carro":carro})
+
 
 def delete(request, id):
-  carro = Carro.objects.get(id=id)
+  carro = get_object_or_404(Carro, id=id)
   carro.delete()
-  return redirect(home)
+  return redirect(homeCarros)

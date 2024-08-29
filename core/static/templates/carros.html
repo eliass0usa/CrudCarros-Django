@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Registro de Carros</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+
+  <nav>
+    <ul>
+      <li><a href="">Cadastro</a></li>
+      <li><a href="">Clientes</a></li>
+    </ul>
+  </nav>
+  <div class="formulario">
+    <form name="formulario-cadastro" action="{% url 'salvar' %}" method="post">
+      <h3>Formulário de Cadastro de Veículos</h3>
+      <br>
+      {% csrf_token %}
+      <label for="nome"><strong>Nome</strong></label>
+      <input type="text" name="nome" required>
+      <label for="marca"><strong>Marca</strong></label>
+      <input type="text" name="marca" required>
+      <label for="placa"><strong>Placa</strong></label>
+      <input type="text" name="placa" required>
+      <label for="cor"><strong>Cor</strong></label>
+      <input type="text" name="cor" required>
+      <label for="ano"><strong>Ano</strong></label>
+      <input type="text" name="ano" required>
+      <button type="submit">Cadastrar</button>
+    </form>
+  </div>
+
+  <div class="Tabela">
+    <h3>Veículos Registrados</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Marca</th>
+          <th>Placa</th>
+          <th>Cor</th>
+          <th>Ano</th>
+          <th>Configurações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for carro in carros %}
+        <tr>
+          <td>{{ carro.id }}</td>
+          <td>{{ carro.nome }}</td>
+          <td>{{ carro.marca }}</td>
+          <td>{{ carro.placa }}</td>
+          <td>{{ carro.cor }}</td>
+          <td>{{ carro.ano }}</td>
+          <td><a href="{% url 'update' carro.id %}"><button class="botoes" id="editar">Editar</button></a>
+            <a href="{% url 'delete' carro.id %}"><button class="botoes" id="deletar">Deletar</button></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>
