@@ -1,0 +1,21 @@
+:root {
+  --primary-color: #007bff;
+  --primary-hover-color: #0056b3;
+  --secondary-color: #333;
+  --background-color: #f8f9fa;
+  --border-color: #ddd;
+  --error-color: #c82333;
+  --error-hover-color: #a40918;
+  --link-color: #007bff;
+  --link-hover-color: #0056b3;
+
+  --font-family: Arial, sans-serif;
+  --font-size-base: 16px;
+  --heading-color: #333;
+
+  --spacing-small: 5px;
+  --spacing-medium: 10px;
+  --spacing-large: 20px;
+
+  --border-radius: 4px;
+}
