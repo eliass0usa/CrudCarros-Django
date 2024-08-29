@@ -11,7 +11,7 @@
 
 <body>
   <div class="formulario">
-    <form name="formulario-cadastro" action="" method="post">
+    <form name="formulario-cadastro" action="{% url 'salvarCliente' %}" method="POST">
       <h3>Formulário de Cadastro de Clientes</h3>
       <br>
       {% csrf_token %}
@@ -49,8 +49,10 @@
           <td>{{ cliente.nome }}</td>
           <td>{{ cliente.sobrenome }}</td>
           <td>{{ cliente.nascimento }}</td>
-          <td><a href=""><button class="botoes" id="editar">Editar</button></a>
-            <a href=""><button class="botoes" id="deletar">Deletar</button></a>
+          <td>
+            <a href="{% url 'homeCarros' %}"><button class="botoes" id="editar">Carros</button></a>
+            <a href=""><button class="botoes" id="editar">Editar</button></a>
+            <a href="{% url 'deletarCliente' cliente.id %}"><button class="botoes" id="deletar">Deletar</button></a>
           </td>
         </tr>
         {% endfor %}

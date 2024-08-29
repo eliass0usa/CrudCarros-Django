@@ -10,6 +10,20 @@ def homeClientes(request):
   clientes = Cliente.objects.all()
   return render (request, "clientes.html", {'clientes': clientes})
 
+def salvarCliente(request):
+  clicpf = request.POST.get("cpf")
+  clinome = request.POST.get("nome")
+  clisobrenome = request.POST.get("sobrenome")
+  clinascimento = request.POST.get("nascimento")
+  Cliente.objects.create(cpf=clicpf, nome=clinome, sobrenome=clisobrenome, nascimento=clinascimento)
+  clientes = Cliente.objects.all()
+  return render(request, "carros.html", {'clientes': clientes})
+
+def deletarCliente(request, id):
+  cliente = get_object_or_404(Cliente, id=id)
+  cliente.delete()
+  return redirect(homeClientes)
+
 # MODEL CARROS #
 def homeCarros(request):
   carros = Carro.objects.all()

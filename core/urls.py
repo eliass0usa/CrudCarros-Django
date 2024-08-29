@@ -6,6 +6,9 @@ urlpatterns = [
     
     # Clientes
     path('clientes', views.homeClientes, name="homeClientes"),
+    path('salvarcliente', views.salvarCliente, name="salvarCliente"),
+    path('deletarCliente<int:id>', views.deletarCliente, name="deletarCliente"),
+    path('clientes', views.homeClientes, name="homeClientes"),
     
     # Carros
     path('carros', views.homeCarros, name="homeCarros"),
