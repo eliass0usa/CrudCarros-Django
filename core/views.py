@@ -6,7 +6,7 @@ def home(request):
   return render (request, "index.html")
 
 # MODEL CLIENTE #
-def homeCliente(request):
+def homeClientes(request):
   clientes = Cliente.objects.all()
   return render (request, "clientes.html", {'clientes': clientes})
 

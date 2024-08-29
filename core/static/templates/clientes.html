@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Registro de Clientes</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+  <div class="formulario">
+    <form name="formulario-cadastro" action="" method="post">
+      <h3>Formulário de Cadastro de Clientes</h3>
+      <br>
+      {% csrf_token %}
+      <label for="nome"><strong>CPF</strong></label>
+      <input type="text" name="cpf" required>
+      <label for="nome"><strong>Nome</strong></label>
+      <input type="text" name="nome" required>
+      <label for="nome"><strong>Sobrenome</strong></label>
+      <input type="text" name="sobrenome" required>
+      <label for="nome"><strong>Data de Nascimento</strong></label>
+      <input type="date" name="nascimento" required>
+
+      <button type="submit">Cadastrar</button>
+    </form>
+  </div>
+
+  <div class="Tabela">
+    <h3>Clientes Cadastrados</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>CPF</th>
+          <th>Nome</th>
+          <th>Sobrenome</th>
+          <th>Data de Nacimento</th>
+          <th>Configurações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for cliente in clientes %}
+        <tr>
+          <td>{{ cliente.id }}</td>
+          <td>{{ cliente.cpf }}</td>
+          <td>{{ cliente.nome }}</td>
+          <td>{{ cliente.sobrenome }}</td>
+          <td>{{ cliente.nascimento }}</td>
+          <td><a href=""><button class="botoes" id="editar">Editar</button></a>
+            <a href=""><button class="botoes" id="deletar">Deletar</button></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>

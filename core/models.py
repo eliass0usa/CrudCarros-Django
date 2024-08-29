@@ -4,7 +4,7 @@ class Cliente(models.Model):
   cpf = models.CharField(max_length=11, null=False, default="")
   nome = models.CharField(max_length=50, null=False, default="")
   sobrenome = models.CharField(max_length=100, null=False, default="") 
-  nascimento = models.IntegerField(default="")
+  nascimento = models.DateField()
 
   def __str__(self):
     return self.nome
