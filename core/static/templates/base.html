@@ -11,24 +11,22 @@
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   {% block head %}{% endblock %}
 
-  <title>{% block title %}Bem vindo!{% endblock %}</title>
-  <nav>
-    <ul>
-      <li><a href="{% url 'home' %}">Inicio</a></li>
-      <li><a href="#">Cadastro</a></li>
-      <li><a href="{% url 'homeClientes' %}">Clientes</a></li>
-      <li><a href="{% url 'homeCarros' %}">Carros</a></li>
-    </ul>
-  </nav>
+  <title>{% block title %}Bem-vindo!{% endblock %}</title>
 </head>
 
 <body>
 
+  <nav>
+    <ul>
+      <li><a href="{% url 'home' %}">Inicio</a></li>
+      <li><a href="{% url 'homeClientes' %}">Clientes</a></li>
+      <li><a href="{% url 'homeCarros' %}">Carros</a></li>
+    </ul>
+  </nav>
 
   <section class="home-section">
     {% block body %}
     {% endblock %}
-
   </section>
 
 </body>

@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Editor de Registro</title>
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
+{% block tiltle %} Editor de Registro - Veículos {% endblock %}
+
+{% block body %}
 
 <body>
   <form action="{% url 'update' carro.id %}" method="post">
@@ -51,3 +46,4 @@
 </body>
 
 </html>
+{% endblock %}

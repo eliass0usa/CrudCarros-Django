@@ -44,7 +44,7 @@
         <td>{{ cliente.nascimento }}</td>
         <td>
           <a href="{% url 'homeCarros' %}"><button class="botoes" id="editar">Carros</button></a>
-          <a href=""><button class="botoes" id="editar">Editar</button></a>
+          <a href="{% url 'editarCliente' cliente.id%}"><button class="botoes" id="editar">Editar</button></a>
           <a href="{% url 'deletarCliente' cliente.id %}"><button class="botoes" id="deletar">Deletar</button></a>
         </td>
       </tr>

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from .forms import ClienteForm 
 from .models import Carro, Cliente
 
 # HOME
@@ -12,17 +13,30 @@ def homeClientes(request):
 
 def salvarCliente(request):
   clicpf = request.POST.get("cpf")
-  clinome = request.POST.get("nome")
+  clinome = request.POST.get("nome" )
   clisobrenome = request.POST.get("sobrenome")
   clinascimento = request.POST.get("nascimento")
   Cliente.objects.create(cpf=clicpf, nome=clinome, sobrenome=clisobrenome, nascimento=clinascimento)
   clientes = Cliente.objects.all()
-  return render(request, "carros.html", {'clientes': clientes})
+  return render(request, "clientes.html", {'clientes': clientes})
 
 def deletarCliente(request, id):
   cliente = get_object_or_404(Cliente, id=id)
   cliente.delete()
   return redirect(homeClientes)
+
+def editarCliente(request, id):
+    cliente = get_object_or_404(Cliente, id=id)
+    
+    if request.method == 'POST':
+        form = ClienteForm(request.POST, instance=cliente)
+        if form.is_valid():
+            form.save()
+            return redirect('homeClientes')
+    else:
+        form = ClienteForm(instance=cliente)
+    
+    return render(request, 'editar_cliente.html', {'form': form, 'cliente': cliente})
 
 # MODEL CARROS #
 def homeCarros(request):

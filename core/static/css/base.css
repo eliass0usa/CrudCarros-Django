@@ -120,3 +120,11 @@ form button {
 form button:hover {
   background-color: #0056b3;
 }
+
+.center-container {
+  text-align: center;
+}
+
+.center-container p {
+  margin: 0 auto;
+}
