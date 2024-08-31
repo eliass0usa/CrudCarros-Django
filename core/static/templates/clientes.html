@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %} Clientes {% endblock %}
+
+{% block body %}
+<div class="formulario">
+  <form name="formulario-cadastro" action="{% url 'salvarCliente' %}" method="POST">
+    <h3>Formulário de Cadastro de Clientes</h3>
+    <br>
+    {% csrf_token %}
+    <label for="cpf"><strong>CPF</strong></label>
+    <input type="text" name="cpf" required>
+    <label for="nome"><strong>Nome</strong></label>
+    <input type="text" name="nome" required>
+    <label for="sobrenome"><strong>Sobrenome</strong></label>
+    <input type="text" name="sobrenome" required>
+    <label for="nascimento"><strong>Data de Nascimento</strong></label>
+    <input type="date" name="nascimento" required>
+
+    <h4>Formulário de Cadastro de Carros (Opcional)</h4>
+    <label for="carro_nome"><strong>Nome do Carro</strong></label>
+    <input type="text" name="carro_nome">
+    <label for="carro_marca"><strong>Marca</strong></label>
+    <input type="text" name="carro_marca">
+    <label for="carro_placa"><strong>Placa</strong></label>
+    <input type="text" name="carro_placa">
+    <label for="carro_cor"><strong>Cor</strong></label>
+    <input type="text" name="carro_cor">
+    <label for="carro_ano"><strong>Ano</strong></label>
+    <input type="text" name="carro_ano">
+
+    <button type="submit">Cadastrar</button>
+  </form>
+</div>
+
+<div class="Tabela">
+  <h3>Clientes Cadastrados</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>CPF</th>
+        <th>Nome</th>
+        <th>Sobrenome</th>
+        <th>Data de Nascimento</th>
+        <th>Configurações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for cliente in clientes %}
+      <tr>
+        <td>{{ cliente.id }}</td>
+        <td>{{ cliente.cpf }}</td>
+        <td>{{ cliente.nome }}</td>
+        <td>{{ cliente.sobrenome }}</td>
+        <td>{{ cliente.nascimento }}</td>
+        <td>
+          <a href="{% url 'homeCarros' %}"><button class="botoes" id="editar">Carros</button></a>
+          <a href="#"><button class="botoes" id="editar">Editar</button></a>
+          <a href="{% url 'deletarCliente' cliente.id %}"><button class="botoes" id="deletar">Deletar</button></a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
