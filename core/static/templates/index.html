@@ -6,16 +6,14 @@
 {% if user.is_authenticated %}
 
 <div class="center-container">
-  <p>Olá {{ user.name }}</p>
   <h1>Bem-vindo ao sistema!</h1>
   <p>Esse sistema foi feito para estudar o framework Django.</p>
 </div>
 
-<form action="{% url 'logout' %}" method="post">
+<form action="{% url 'logout' %}" method="post" class="logout-form">
   {% csrf_token %}
   <button type="submit">Log Out</button>
 </form>
 {% else %}
-<p>Você não está logado</p>
 {% endif %}
 {% endblock %}

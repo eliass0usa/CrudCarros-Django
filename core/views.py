@@ -11,8 +11,8 @@ def home(request):
 def login(request):
   return render(request, "login.html")
 
-def logout_user(request):
-  pass
+def logout(request):
+  return render(request, "logout.html")
 
 # MODEL CLIENTE #
 def homeClientes(request):
