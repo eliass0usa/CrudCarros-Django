@@ -1,10 +1,18 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import authenticate, login, logout
 from .forms import ClienteForm 
 from .models import Carro, Cliente
 
 # HOME
 def home(request):
   return render (request, "index.html")
+
+# LOGIN E LOGOUT
+def login(request):
+  return render(request, "login.html")
+
+def logout_user(request):
+  pass
 
 # MODEL CLIENTE #
 def homeClientes(request):
