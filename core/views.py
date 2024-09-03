@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
-from .forms import ClienteForm 
+from .forms import ClienteForm, CarroForm
 from .models import Carro, Cliente
 
 # HOME
@@ -61,32 +61,18 @@ def salvar(request):
   carros = Carro.objects.all()
   return render(request, "carros.html", {'carros':carros})
 
-def editar(request, id):
-  carro = get_object_or_404(Carro, id=id)
-  return render(request, "update.html", {"carro":carro})
-
-def update(request, id):
+def editarCarro(request, id):
   carro = get_object_or_404(Carro, id=id)
   
   if request.method == 'POST':
-    cnome = request.POST.get("nome")
-    cmarca = request.POST.get("marca")
-    cplaca = request.POST.get("placa")
-    ccor = request.POST.get("cor") 
-    cano = request.POST.get("ano")
-    if cnome and cmarca and cplaca and ccor and cano:
-      carro.nome = cnome
-      carro.marca = cmarca
-      carro.placa = cplaca
-      carro.cor = ccor
-      carro.ano = cano
-      carro.save()
+    form = CarroForm(request.POST, instance=carro)
+    if form.is_valid():
+      form.save()
       return redirect('homeCarros')
-    else:
-      return render(request, "update.html", {"carro": carro, "error": "Todos os campos são obrigatórios"})
-     
-  return render(request, "update.html", {"carro":carro})
-
+  else:
+    form = CarroForm(instance=carro)
+    return render(request, 'editar_carro.html', {'form':form, 'carro':carro})
+    
 
 def delete(request, id):
   carro = get_object_or_404(Carro, id=id)

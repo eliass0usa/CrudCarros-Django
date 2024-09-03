@@ -48,7 +48,7 @@ Registro de Carros
         <td>{{ carro.cor }}</td>
         <td>{{ carro.ano }}</td>
         <td>
-          <a href="{% url 'update' carro.id %}">
+          <a href="{% url 'editarCarro' carro.id %}">
             <button class="botoes" id="editar">Editar</button>
           </a>
           <a href="{% url 'delete' carro.id %}">

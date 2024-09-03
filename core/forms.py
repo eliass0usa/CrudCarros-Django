@@ -1,5 +1,5 @@
 from django import forms
-from .models import Cliente
+from .models import Cliente, Carro
 
 class ClienteForm(forms.ModelForm):
     class Meta:
@@ -8,3 +8,8 @@ class ClienteForm(forms.ModelForm):
         widgets = {
             'nascimento': forms.DateInput(attrs={'type': 'date'}),
         }
+
+class CarroForm(forms.ModelForm):
+    class Meta:
+        model = Carro
+        fields = ['nome', 'marca', 'placa', 'cor', 'ano']
