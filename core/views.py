@@ -14,6 +14,9 @@ def login(request):
 def logout(request):
   return render(request, "logout.html")
 
+def register(request):
+  pass
+
 # MODEL CLIENTE #
 def homeClientes(request):
   clientes = Cliente.objects.all()
