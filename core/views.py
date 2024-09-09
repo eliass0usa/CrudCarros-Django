@@ -14,8 +14,8 @@ def login(request):
 def logout(request):
   return render(request, "logout.html")
 
-def register(request):
-  pass
+def signUp(request):
+  return render(request, "registration/signUp.html")
 
 # MODEL CLIENTE #
 def homeClientes(request):
