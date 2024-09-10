@@ -8,23 +8,6 @@ from .models import Carro, Cliente
 def home(request):
     return render(request, "index.html")
 
-# LOGIN AND LOGOUT
-def custom_login(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            auth_login(request, user)
-            return redirect('/')
-        else:
-            return render(request, 'login.html', {'error': 'Invalid username or password.'})
-    return render(request, "login.html")
-
-def custom_logout(request):
-    auth_logout(request)
-    return redirect('/')
-
 # SIGN UP
 def signUp(request):
     if request.method == 'POST':

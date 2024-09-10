@@ -26,7 +26,7 @@ class Carro(models.Model):
         return self.nome
 
 class UserManager(BaseUserManager):
-    def _create_user(self, username, email, password, is_staff=False, is_superuser=False):
+    def _create_user(self, username, email, password, is_superuser=True):
         if not username:
             raise ValueError(_('The Username field must be set'))
         if not email:
@@ -36,16 +36,13 @@ class UserManager(BaseUserManager):
         user = self.model(
             username=username,
             email=email,
-            is_staff=is_staff,
+            password=password,
             is_superuser=is_superuser,
             is_active=True
         )
         user.set_password(password)
         user.save(using=self._db)
         return user
-
-    def create_user(self, username, email, password=None):
-        return self._create_user(username, email, password, is_staff=False, is_superuser=False)
 
     def create_superuser(self, username, email, password):
         return self._create_user(username, email, password, is_staff=True, is_superuser=True)
