@@ -1,6 +1,7 @@
 from django import forms
 from .models import Cliente, Carro
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import UserManager, User
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 class ClienteForm(forms.ModelForm):
     class Meta:
@@ -18,3 +19,11 @@ class CarroForm(forms.ModelForm):
 class CustomLoginForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    
+    
+class RegistrationForm(forms.ModelForm):
+    Email = forms.EmailField(required=True)
+    
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'username', 'email', 'password']

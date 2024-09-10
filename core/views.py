@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
-from .forms import ClienteForm, CarroForm
+from django.contrib.auth import login as auth_login
+from django.contrib.auth.forms import *
+from .forms import ClienteForm, CarroForm, RegistrationForm
 from .models import Carro, Cliente
 
 # HOME
@@ -15,7 +17,18 @@ def logout(request):
   return render(request, "logout.html")
 
 def signUp(request):
-  return render(request, "registration/signUp.html")
+  if request.method == 'POST':
+    form = RegistrationForm(request.POST)
+    if form.is_valid():
+      user = form.save()
+      auth_login(request, user)
+      return redirect('/')
+  else:
+    form = RegistrationForm()
+  return render(request, "registration/signUp.html", {'form':form})
+
+def createAnAccount(request):
+  return render(request, )
 
 # MODEL CLIENTE #
 def homeClientes(request):
