@@ -22,9 +22,8 @@ class CustomLoginForm(AuthenticationForm):
     
     
 class RegistrationForm(forms.ModelForm):
-    Email = forms.EmailField(required=True)
-    
+
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name','email', 'password',]
+        fields = ['username', 'first_name', 'last_name','email', 'password' ]
         widgets = {'password': forms.PasswordInput()}
