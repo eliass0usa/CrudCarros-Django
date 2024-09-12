@@ -13,7 +13,9 @@ def signUp(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save()  
+            user.set_password(form.cleaned_data.get('password'))
+            user.save()
             auth_login(request, user)
             return redirect('/')
     else:
