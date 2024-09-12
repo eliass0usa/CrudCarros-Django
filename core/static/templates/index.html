@@ -6,7 +6,8 @@
 {% if user.is_authenticated %}
 
 <div class="center-container">
-  <h1>Bem-vindo ao sistema! {{ request.user.username }}</h1>
+  <h1>Bem-vindo ao sistema, {{ request.user.username }}.
+  </h1>
   <p>Esse sistema foi feito para estudar o framework Django.</p>
 </div>
 

@@ -6,7 +6,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 from django.utils.translation import gettext_lazy as _
 
 class Cliente(models.Model):
-    cpf = models.CharField(max_length=11, null=False, default="")
+    cpf = models.CharField(max_length=11, null=False, default="", unique=True)
     nome = models.CharField(max_length=50, null=False, default="")
     sobrenome = models.CharField(max_length=100, null=False, default="")
     nascimento = models.DateField()
@@ -17,7 +17,7 @@ class Cliente(models.Model):
 class Carro(models.Model):
     nome = models.CharField(max_length=50, null=False, default="")
     marca = models.CharField(max_length=100, null=False, default="")
-    placa = models.CharField(max_length=8, null=False, default="")
+    placa = models.CharField(max_length=8, null=False, default="", unique=True)
     cor = models.CharField(max_length=20, null=False, default="")
     ano = models.IntegerField(null=False)
     cliente = models.ForeignKey(to='Cliente', on_delete=models.CASCADE, null=True)
@@ -59,7 +59,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     first_name = models.CharField(_('first name'), max_length=30)
     last_name = models.CharField(_('last name'), max_length=30)
-    email = models.EmailField(_('email address'), max_length=255, unique=True)
+    email = models.EmailField(_('email address'), max_length=255, unique=True)  
     
     is_staff = models.BooleanField(
         _('staff status'), default=False,
