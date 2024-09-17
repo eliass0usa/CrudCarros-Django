@@ -22,8 +22,8 @@ def signUp(request):
         form = RegistrationForm()
     return render(request, "registration/signUp.html", {'form': form})
 
-def passwordReset(request):
-    return render('registration/passwordReset.html')  
+def password_reset(request):
+    return render('registration/passwor_reset.html')  
 
 # MODEL CLIENTE #
 def homeClientes(request):

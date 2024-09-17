@@ -8,8 +8,14 @@ urlpatterns = [
     path('', views.home, name="home"),
     path('login/', auth_views.LoginView.as_view(authentication_form=CustomLoginForm ,template_name='registration/login.html'), name="login"),
     path('logout/', auth_views.LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
-    path('passwordReset/', auth_views.PasswordResetView.as_view(template_name='registration/passwordReset.html'), name='passwordReset'),
     path('signUp/',views.signUp, name='signUp'),
+    
+    # Senhas
+    path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
+    path('password_reset_confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('password_reset_done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_done'),
+    path('reset/<uidb64>/token/', auth_views.PasswordResetView.as_view(), name='password_reset_done'),
+    
     
     # Clientes
     path('homeClientes', views.homeClientes, name="homeClientes"),
