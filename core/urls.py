@@ -8,6 +8,7 @@ urlpatterns = [
     path('', views.home, name="home"),
     path('login/', auth_views.LoginView.as_view(authentication_form=CustomLoginForm ,template_name='registration/login.html'), name="login"),
     path('logout/', auth_views.LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
+    path('passwordReset/', auth_views.PasswordResetView.as_view(template_name='registration/passwordReset.html'), name='passwordReset'),
     path('signUp/',views.signUp, name='signUp'),
     
     # Clientes
