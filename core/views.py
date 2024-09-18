@@ -23,7 +23,7 @@ def signUp(request):
     return render(request, "registration/signUp.html", {'form': form})
 
 def password_reset(request):
-    return render(request, 'registration/passwor_reset.html')
+    return render(request, 'registration/password_reset.html')
 
 # MODEL CLIENTE #
 def homeClientes(request):
