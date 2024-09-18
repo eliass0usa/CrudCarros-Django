@@ -13,7 +13,7 @@ def signUp(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            user = form.save()  
+            user = form.save(commit=False)  
             user.set_password(form.cleaned_data.get('password'))
             user.save()
             auth_login(request, user)
@@ -23,7 +23,7 @@ def signUp(request):
     return render(request, "registration/signUp.html", {'form': form})
 
 def password_reset(request):
-    return render('registration/passwor_reset.html')  
+    return render(request, 'registration/passwor_reset.html')
 
 # MODEL CLIENTE #
 def homeClientes(request):
@@ -42,7 +42,7 @@ def salvarCliente(request):
 def deletarCliente(request, id):
     cliente = get_object_or_404(Cliente, id=id)
     cliente.delete()
-    return redirect(homeClientes)
+    return redirect('homeClientes')
 
 def editarCliente(request, id):
     cliente = get_object_or_404(Cliente, id=id)
